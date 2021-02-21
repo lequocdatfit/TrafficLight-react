@@ -3,47 +3,19 @@ import './TrafficLight.css';
 const classnames = require('classnames');
 
 
-const RED = 0;
-const YELLOW = 1;
-const GREEN = 2;
-
 class TrafficLight extends Component{
-    constructor() {
-        super();
-        this.state = {
-            'currentColor' : RED,
-        };
-        
-        setInterval(() => {
-            this.setState({
-                'currentColor' : this.getNextColor(this.state.currentColor)
-            })
-        }, 1000)  
-    }
-
-    getNextColor(color) {
-        switch (color) {
-            case RED:
-                return YELLOW;
-            case YELLOW:
-                return GREEN;
-            case GREEN:
-                return RED;
-            default:
-                return RED;
-        }
-    }
     render() {
+        const currentColor = this.props.state;
         return(
             <div className="TrafficLight">
                 <div className={classnames('light', 'red', {
-                    active: this.state.currentColor === RED
+                    active: currentColor === 0
                 })}></div>
                 <div className={classnames('light', 'yellow', {
-                    active: this.state.currentColor === YELLOW
+                    active: currentColor === 1
                 })}></div>
                 <div className={classnames('light', 'green', {
-                    active: this.state.currentColor === GREEN
+                    active: currentColor === 2
                 })}></div>
                 
             </div>
